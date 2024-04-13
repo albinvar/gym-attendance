@@ -11,9 +11,10 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Bavix\Wallet\Traits\HasWalletFloat;
 use Bavix\Wallet\Interfaces\WalletFloat;
+use Bavix\Wallet\Interfaces\Wallet;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements WalletFloat
+class User extends Authenticatable implements WalletFloat, Wallet
 {
     use HasApiTokens;
     use HasFactory;
