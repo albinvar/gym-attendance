@@ -3,10 +3,13 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Razorpay\Api\Api;
 
 class Dashboard extends Component
 {
     public $confirmingRecharge = false;
+
+    public $rechargeAmount;
 
     protected $listeners = ['openAddFundsModal'];
 
@@ -23,8 +26,27 @@ class Dashboard extends Component
     public function rechargeFunds()
     {
         // Perform your logic to recharge funds
-        // Once the funds are recharged, you can close the modal
+        // Generate Razorpay order and store necessary details in session
+        $keyId = env('RAZORPAY_KEY_ID');
+        $keySecret = env('RAZORPAY_KEY_SECRET');
+        $api = new Api($keyId, $keySecret);
+
+        $orderData = [
+            'receipt'         => uniqid(),
+            'amount'          => $this->rechargeAmount * 100, // Convert amount to paise
+            'currency'        => 'INR',
+            'payment_capture' => 1 // Auto capture
+        ];
+
+        $razorpayOrder = $api->order->create($orderData);
+        $razorpayOrderId = $razorpayOrder['id'];
+
+        session()->put('razorpay_order_id', $razorpayOrderId);
+
         $this->confirmingRecharge = false;
+
+        // Redirect to payment gateway page
+        return redirect()->route('payment.gateway');
     }
     public function render()
     {
