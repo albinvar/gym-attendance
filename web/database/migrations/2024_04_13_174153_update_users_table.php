@@ -16,8 +16,8 @@ return new class extends Migration
             $table->boolean('enable_pin')->default(false);
             // add column to store 4 digit pin for transaction
             $table->string('pin')->nullable();
-            // add column to store rfid tag id
-            $table->string('card')->nullable();
+            // add column to store rfid tag id unique
+            $table->string('card')->unique()->nullable();
         });
     }
 
