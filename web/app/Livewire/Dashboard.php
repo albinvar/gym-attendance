@@ -46,7 +46,7 @@ class Dashboard extends Component
 
         $this->confirmingRecharge = false;
 
-        // Redirect to payment gateway page
+        // send post request to payment gateway with params
         return redirect()->route('payment.gateway');
     }
     public function render()

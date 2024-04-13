@@ -28,4 +28,5 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/payment/gateway', [PaymentController::class, 'showPaymentGateway'])->name('payment.gateway');
+    Route::post('/payment/gateway', [PaymentController::class, 'handleGatewayResponse'])->name('payment.gateway.response');
 });
