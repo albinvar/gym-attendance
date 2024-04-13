@@ -34,6 +34,7 @@ class User extends Authenticatable implements WalletFloat, Wallet
         'email',
         'password',
         'enable_pin',
+        'pin',
     ];
 
     /**

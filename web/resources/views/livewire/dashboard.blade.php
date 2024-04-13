@@ -73,10 +73,10 @@
                                 Your PIN
                             </p>
                             <div class="flex justify-center space-x-3" data-hs-pin-input="">
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit1">
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit2">
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit3">
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit4">
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit1" readonly>
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit2" readonly>
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit3" readonly>
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit4" readonly>
                             </div>
                         </div>
                     </div>

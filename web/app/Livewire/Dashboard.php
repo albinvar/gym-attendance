@@ -37,10 +37,20 @@ class Dashboard extends Component
         if ($this->pinEnabled) {
             // update the authenticated user's pin status to true
             auth()->user()->update(['enable_pin' => true]);
+            $this->rotatePin();
         } else {
             // update the authenticated user's pin status to false
             auth()->user()->update(['enable_pin' => false]);
         }
+    }
+
+    public function rotatePin()
+    {
+        // Generate a new pin
+        $pin = rand(1000, 9999);
+
+        // Update the authenticated user's pin
+        auth()->user()->update(['pin' => $pin]);
     }
 
     public function rechargeFunds()
