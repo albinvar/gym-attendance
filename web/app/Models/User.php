@@ -9,15 +9,15 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Bavix\Wallet\Traits\HasWallet;
-use Bavix\Wallet\Interfaces\Wallet;
+use Bavix\Wallet\Traits\HasWalletFloat;
+use Bavix\Wallet\Interfaces\WalletFloat;
 
-class User extends Authenticatable implements Wallet
+class User extends Authenticatable implements WalletFloat
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
-    use HasWallet;
+    use HasWalletFloat;
     use Notifiable;
     use TwoFactorAuthenticatable;
 
