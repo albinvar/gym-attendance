@@ -62,8 +62,4 @@
 
 <x-transactions />
 
-<x-add-fund wire:then="confirmingRecharge">
-    <x-button type="button" wire:loading.attr="disabled">
-        {{ __('Enable') }}
-    </x-button>
-</x-add-fund>
+<livewire:add-funds />
