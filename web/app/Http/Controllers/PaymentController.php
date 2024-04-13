@@ -115,7 +115,11 @@ class PaymentController extends Controller
             // convert the amount to rupees
             $amount = $amount / 100;
 
-            auth()->user()->depositFloat($amount);
+            auth()->user()->depositFloat($amount, [
+                'description' => 'Added funds to wallet',
+                'gateway' => 'razorpay',
+                'payment_id' => $request->get('paymentId'),
+            ]);
 
             return response()->json([
                 'success' => true,

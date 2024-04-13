@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.3s>
 <div class="bg-white py-2">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto mt-2 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
