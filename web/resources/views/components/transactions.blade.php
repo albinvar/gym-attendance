@@ -13,10 +13,10 @@
                                 <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
                                     <div>
                                         <h2 class="text-xl font-semibold text-gray-800">
-                                            Access Logs
+                                            Recent Transactions
                                         </h2>
                                         <p class="text-sm text-gray-600">
-                                            Keys you have generated to connect with third-party clients or access the API.
+                                            Keep track of your expenses and manage your wallet with ease.
                                         </p>
                                     </div>
 
@@ -57,6 +57,14 @@
                                         <th scope="col" class="px-6 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                     <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                        Type
+                    </span>
+                                            </div>
+                                        </th>
+
+                                        <th scope="col" class="px-6 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
                         Amount
                     </span>
                                             </div>
@@ -75,7 +83,7 @@
                                     </thead>
 
                                     <tbody class="divide-y divide-gray-200">
-                                    @forelse(Auth::user()->transactions as $transaction)
+                                    @forelse(Auth::user()->transactions()->latest()->get() as $transaction)
                                         <tr>
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="ps-6 py-3">
@@ -90,21 +98,22 @@
                                                 <div class="px-6 py-3">
                                                     <span class="text-sm text-gray-600">
                                                         <span class="font-semibold text-gray-800">
-                                                            {{ $log->action }}
+                                                            {{ $transaction->meta['description'] ?? 'Unknown' }}
                                                         </span>
                                                     </span>
                                                 </div>
                                             </td>
+
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="px-6 py-3">
                                                     <span class="text-sm text-gray-600">
-                                                        @if($log->type == 'in')
+                                                        @if($transaction->type == 'deposit')
                                                             <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
-                                                                Check In
+                                                                Credit
                                                             </span>
-                                                        @elseif($log->type == 'out')
+                                                        @elseif($transaction->type == 'transfer')
                                                             <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-orange-100 text-orange-800 rounded-full">
-                                                                Check Out
+                                                                Debit
                                                             </span>
                                                         @else
                                                             <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-full">
@@ -115,38 +124,33 @@
                                                 </div>
                                             </td>
                                             <td class="size-px whitespace-nowrap">
-                                                <div class="px-6 py-3 item-center">
-                                                    @if($log->status == 'success')
-                                                        <span class="float-left py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-orange-100 text-orange-800 rounded-full">
-                                                                {{ $log->message }}
-                                                            </span>
-                                                    @elseif($log->status == 'failed')
-                                                        <span class="float-left py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-600 rounded-full">
-                                                                {{ $log->message }}
-                                                            </span>
-                                                    @endif
-                                                </div>
-                                            </td>
-                                            <td class="size-px whitespace-nowrap">
                                                 <div class="px-6 py-3">
-                                                    @if(isset($log->user->name))
-                                                        <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-sm font-medium bg-teal-100 text-teal-800 rounded-full">
-                      <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                      </svg>
-                        {{  $log->user->name ?? 'Unknown' }}
-                    </span>
-                                                    @else
-                                                        <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-sm">
-                                                                Unknown
-                                                            </span>
-                                                    @endif
+                                                    <span class="text-sm text-gray-600">
+                                                        <span class="font-semibold text-gray-800">
+                                                            ₹ {{ number_format($transaction->amount / 100, 2) }}
+                                                        </span>
+                                                    </span>
                                                 </div>
                                             </td>
+{{--                                            <td class="size-px whitespace-nowrap">--}}
+{{--                                                <div class="px-6 py-3 item-center">--}}
+{{--                                                    @if($transaction->confirmed)--}}
+{{--                                                        <span class="float-left py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-orange-100 text-orange-800 rounded-full">--}}
+{{--                                                                {{ $transaction->message }}--}}
+{{--                                                            </span>--}}
+{{--                                                    @elseif($transaction->confirmed == 'failed')--}}
+{{--                                                        <span class="float-left py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-red-100 text-red-600 rounded-full">--}}
+{{--                                                                {{ $transaction->message }}--}}
+{{--                                                            </span>--}}
+{{--                                                    @endif--}}
+{{--                                                </div>--}}
+{{--                                            </td>--}}
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="px-6 py-3">
                                                     <span class="text-sm text-gray-600">
-                                                        {{ $log->created_at->format('M d, Y h:i A') }} ({{ $log->created_at->diffForHumans() }})
+                                                        <span class="font-medium text-gray-800">
+                                                            {{ $transaction->created_at->diffForHumans() }}
+                                                        </span>
                                                     </span>
                                                 </div>
                                             </td>
