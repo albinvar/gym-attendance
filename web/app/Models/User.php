@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Bavix\Wallet\Traits\HasWalletFloat;
 use Bavix\Wallet\Interfaces\WalletFloat;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements WalletFloat
 {
@@ -18,6 +19,7 @@ class User extends Authenticatable implements WalletFloat
     use HasFactory;
     use HasProfilePhoto;
     use HasWalletFloat;
+    use HasRoles;
     use Notifiable;
     use TwoFactorAuthenticatable;
 
