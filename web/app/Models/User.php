@@ -33,6 +33,7 @@ class User extends Authenticatable implements WalletFloat, Wallet
         'name',
         'email',
         'password',
+        'enable_pin',
     ];
 
     /**
@@ -54,6 +55,7 @@ class User extends Authenticatable implements WalletFloat, Wallet
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'enable_pin' => 'boolean',
     ];
 
     /**

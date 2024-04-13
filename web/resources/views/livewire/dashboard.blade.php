@@ -55,13 +55,28 @@
                         <p class="mt-6 text-xs leading-5 text-gray-600">
                             Invoices and receipts available for easy company reimbursement
                         </p>
-                        <div class="mt-6 rounded-2xl bg-gray-100 py-3 text-center ring-1 ring-inset ring-gray-900/5 items-center justify-center">
-                            <p class="pb-2 text-base font-semibold text-gray-600">Your PIN</p>
+                        <div class="px-3 my-6 flex flex-wrap justify-between">
+                            <p class="pb-2 text-base font-semibold text-gray-600">
+                                PIN Security
+                            </p>
+                            <div>
+                                <label for="hs-basic-with-description" class="text-sm text-gray-500 me-3 dark:text-gray-400">Off</label>
+                                <input type="checkbox" wire:click="toggle" id="hs-basic-usage" class="relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-blue-600 disabled:opacity-50 disabled:pointer-events-none checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 before:inline-block before:size-6 before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow before:transform before:ring-0 before:transition before:ease-in-out before:duration-200"
+                                       @if ($pinEnabled) checked @endif
+                                >
+                                <label for="hs-basic-usage" class="sr-only">switch</label>
+                                <label for="hs-basic-with-description" class="text-sm text-gray-500 ms-3 dark:text-gray-400">On</label>
+                            </div>
+                        </div>
+                        <div class="mt-8 rounded-2xl bg-gray-100 py-3 text-center ring-1 ring-inset ring-gray-900/5 items-center justify-center">
+                            <p class="pb-2 text-base font-semibold text-gray-600">
+                                Your PIN
+                            </p>
                             <div class="flex justify-center space-x-3" data-hs-pin-input="">
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" value="3" autofocus="">
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" value="7">
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" value="4">
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" value="9">
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit1">
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit2">
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit3">
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit4">
                             </div>
                         </div>
                     </div>
