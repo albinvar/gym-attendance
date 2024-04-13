@@ -71,7 +71,65 @@ class PaymentController extends Controller
 
     public function handleGatewayResponse(Request $request)
     {
-        
+        $success = true;
+
+        $error = "Payment Failed";
+
+        $keyId = env('RAZORPAY_KEY_ID');
+        $keySecret = env('RAZORPAY_KEY_SECRET');
+        $displayCurrency = 'INR';
+
+        $api = new Api($keyId, $keySecret);
+
+        if (empty($request->get('paymentId')) === false)
+        {
+            try
+            {
+                // Please note that the razorpay order ID must
+                // come from a trusted source (session here, but
+                // could be database or something else)
+                $attributes = array(
+                    'razorpay_order_id' => session()->pull('razorpay_order_id'),
+                    'razorpay_payment_id' => $request->get('paymentId'),
+                    'razorpay_signature' => $request->get('signature')
+                );
+
+                $api->utility->verifyPaymentSignature($attributes);
+            }
+            catch(SignatureVerificationError $e)
+            {
+                $success = false;
+                $error = 'Razorpay Error : ' . $e->getMessage();
+            }
+        }
+
+        if ($success === true)
+        {
+            // retrieve the amount from the payment on razorpay
+
+            $payment = $api->payment->fetch($request->get('paymentId'));
+
+            // retrieve the amount from the payment on razorpay
+            $amount = $payment->amount;
+
+            // convert the amount to rupees
+            $amount = $amount / 100;
+
+            auth()->user()->depositFloat($amount);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Payment Successful',
+            ], 200);
+        }
+        else
+        {
+            // return failure response for in xml ajax
+            return response()->json([
+                'success' => false,
+                'message' => $error,
+            ], 400);
+        }
 
     }
 }

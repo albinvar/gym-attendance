@@ -50,7 +50,10 @@
                     console.error('Failed to capture payment');
                 }
             };
-            xhr.send(JSON.stringify({ payment_id: paymentId, signature: signature }));
+            xhr.send(JSON.stringify({
+                paymentId: paymentId,
+                signature: signature
+            }));
         }
     </script>
 
