@@ -55,6 +55,15 @@
                         <p class="mt-6 text-xs leading-5 text-gray-600">
                             Invoices and receipts available for easy company reimbursement
                         </p>
+                        <div class="mt-6 rounded-2xl bg-gray-100 py-3 text-center ring-1 ring-inset ring-gray-900/5 items-center justify-center">
+                            <p class="pb-2 text-base font-semibold text-gray-600">Your PIN</p>
+                            <div class="flex justify-center space-x-3" data-hs-pin-input="">
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" value="3" autofocus="">
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" value="7">
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" value="4">
+                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" value="9">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
