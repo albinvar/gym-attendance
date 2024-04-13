@@ -4,10 +4,11 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class AddFunds extends Component
+class Dashboard extends Component
 {
     public $confirmingRecharge = false;
-    public $rechargeAmount;
+
+    protected $listeners = ['openAddFundsModal'];
 
     public function openAddFundsModal()
     {
@@ -27,6 +28,6 @@ class AddFunds extends Component
     }
     public function render()
     {
-        return view('livewire.add-funds');
+        return view('livewire.dashboard');
     }
 }
