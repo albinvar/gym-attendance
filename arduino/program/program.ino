@@ -48,8 +48,21 @@ void buzzerNotification(int delaySeconds=500)
   noTone(BUZZER_PIN);
 }
 
+void sendCommand(String command)
+{
+  // Function to send a command to the Python script
+  // You can use this function to send commands to the Python script
+  // For example, you can send a command to create a transaction
+  // or check the balance of the user
+  // You can use the Serial communication to send commands to the Python script
+  // For example, to send the command "create-transaction" to the Python script
+
+  Serial.println(command); // Send the command to the Python script
+}
+
 void setup() {
   lcd.init();
+  Serial.begin(9600); // Initialize the Serial communication
   lcd.backlight();
   displayMenu(); // Display the main menu options initially
   SPI.begin();              // Init SPI bus
@@ -64,6 +77,8 @@ void loop() {
   if (isInMenu && key) { // Check if the system is in the main menu and a key is pressed
     switch (key) {
       case '1':
+        // send a command to the python script to create a transaction
+        sendCommand("create-transaction");
         createTransaction();
         break;
       case '2':
@@ -138,15 +153,38 @@ void checkBalance() {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Checking Balance...");
-  delay(2000); // Simulate checking balance process
+  
+  // Send command to Python script to check balance
+  sendCommand("check-balance");
+
+  // Wait for response from Python script
+  while (!Serial.available()) {
+    delay(100); // Wait for data to be available
+  }
+
+  // Read balance data from serial
+  String balanceData = Serial.readStringUntil('\n');
+  balanceData.trim(); // Remove leading and trailing whitespaces
+  
+  // Parse balance data and display on LCD
+  if (balanceData.startsWith("Balance:")) {
+    String balanceValue = balanceData.substring(8); // Extract balance value
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Your balance is:");
+    lcd.setCursor(0, 2);
+    lcd.print("Rs ");
+    lcd.print(balanceValue);
+  } else {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Failed to fetch");
+    lcd.setCursor(0, 1);
+    lcd.print("balance!");
+  }
+
   buzzerNotification();
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Your balance is:");
-  // Display balance or fetch from a database and display here
-  lcd.setCursor(0, 2);
-  lcd.print("Rs 0000.00");
-  delay(2000); // Add a delay after displaying balance
+  delay(5000); // Add a delay after displaying balance
   isInMenu = true; // Set flag to true to enable main menu input
   displayMenu(); // Show the main menu again
 }
