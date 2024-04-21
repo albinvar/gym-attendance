@@ -16,6 +16,12 @@ class Dashboard extends Component
     public $digit3;
     public $digit4;
 
+    public $checkins = [
+        'Check-in 1',
+        'Check-in 2',
+        'Check-in 3',
+    ];
+
 
     protected $listeners = ['openAddFundsModal'];
     public bool $pinEnabled;

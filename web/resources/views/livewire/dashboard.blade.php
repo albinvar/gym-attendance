@@ -1,4 +1,4 @@
-<div wire:poll.3s>
+<div>
 <div class="bg-white py-2">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto mt-2 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
@@ -7,9 +7,10 @@
                 <p class="mt-6 text-base leading-7 text-gray-600">
                     Thanks for using CampusX. We are glad to have you here. Keep track of your expenses and manage your wallet with ease.
                 </p>
+                <img src="https://cdn.devdojo.com/images/november2020/welcome.png" class="hidden h-48 lg:block mt-10 float-right" alt="Welcome to CampusX">
                 <div class="mt-10 flex items-center gap-x-4">
-                    <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">
-                        Where can you use your wallet?
+                   <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">
+                        How we help you
                     </h4>
                     <div class="h-px flex-auto bg-gray-100"></div>
                 </div>
@@ -18,80 +19,87 @@
                         <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                         </svg>
-                        Campus Stores
+                        Fitness Tracking
                     </li>
                     <li class="flex gap-x-3">
                         <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                         </svg>
-                        Campus Gym
+                        Recommend Workouts
                     </li>
                     <li class="flex gap-x-3">
                         <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                         </svg>
-                        Campus Canteen
+                        Personal Trainer
                     </li>
                     <li class="flex gap-x-3">
                         <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                         </svg>
-                        Campus Library
+                        Diet Plan
                     </li>
                     <li class="flex gap-x-3">
                         <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                         </svg>
-                        Fine Payments
+                        Gym Equipments
                     </li>
                     <li class="flex gap-x-3">
                         <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                         </svg>
-                        Campus Events
+                        Personalized Workouts
                     </li>
                 </ul>
+                <h4 class="mt-12 flex-none text-sm font-semibold leading-6 text-indigo-600">
+                    Attendance Report
+                </h4>
+                <div id="chart" class="mt-12"></div>
             </div>
             <div class="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-                <div class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
+                <div class="rounded-2xl bg-white py-10 text-center ring-1 ring-inset ring-gray-900/10 lg:flex lg:flex-col lg:justify-center lg:py-16">
+
                     <div class="mx-auto max-w-xs px-8">
-                        <p class="text-base font-semibold text-gray-600">Your Current Balance is :</p>
-                        <p class="mt-6 flex items-baseline justify-center gap-x-2">
-                            <span class="text-5xl font-bold tracking-tight text-gray-900">
-                                ₹ {{ Auth::user()->balanceFloat }}
-                            </span>
-                        </p>
+                        <h4 class="text-lg mb-12 font-semibold text-gray-900">Membership</h4>
+                        <img src="{{ asset('assets/images/gym.svg') }}" class="h-48 mx-auto" alt="Wallet">
                         <button wire:click="openAddFundsModal" class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            Recharge Wallet
+                            Renew Membership
                         </button>
                         <p class="mt-6 text-xs leading-5 text-gray-600">
-                            Invoices and receipts available for easy company reimbursement
+                            Your attendance report will be updated here. Keep track of your attendance and stay updated.
                         </p>
-                        <div class="px-3 my-6 flex flex-wrap justify-between">
+                    </div>
+                    <div class="mx-4">
+                        <div class="px-4 my-6 flex flex-wrap justify-between">
                             <p class="pb-2 text-base font-semibold text-gray-600">
-                                PIN Security
+                                Recent Checkins
                             </p>
-                            <div>
-                                <label for="hs-basic-with-description" class="text-sm text-gray-500 me-3 dark:text-gray-400">Off</label>
-                                <input type="checkbox" wire:click="toggle" id="hs-basic-usage" class="relative w-[3.25rem] h-7 p-px bg-gray-100 border-transparent text-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-blue-600 disabled:opacity-50 disabled:pointer-events-none checked:bg-none checked:text-blue-600 checked:border-blue-600 focus:checked:border-blue-600 before:inline-block before:size-6 before:bg-white checked:before:bg-blue-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow before:transform before:ring-0 before:transition before:ease-in-out before:duration-200"
-                                       @if ($pinEnabled) checked @endif
-                                >
-                                <label for="hs-basic-usage" class="sr-only">switch</label>
-                                <label for="hs-basic-with-description" class="text-sm text-gray-500 ms-3 dark:text-gray-400">On</label>
-                            </div>
                         </div>
-                        <div class="mt-8 rounded-2xl bg-gray-100 py-3 text-center ring-1 ring-inset ring-gray-900/5 items-center justify-center">
-                            <p class="pb-2 text-base font-semibold text-gray-600">
-                                Your PIN
-                            </p>
-                            <div class="flex justify-center space-x-3" data-hs-pin-input="">
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit1" readonly>
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit2" readonly>
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit3" readonly>
-                                <input type="text" class="block w-[38px] text-center border-gray-300 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" data-hs-pin-input-item="" wire:model="digit4" readonly>
-                            </div>
+                        <div class="px-4 mt-8 rounded-2xl bg-gray-100 py-3 text-center ring-1 ring-inset ring-gray-900/5 items-center justify-center">
+                            <ul class="divide-y divide-gray-200">
+                                @foreach($checkins as $checkin)
+                                    <li class="flex items-center justify-between py-3 w-full">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name=test&color=7F9CF5&background=EBF4FF" alt="">
+                                            </div>
+                                            <div class="ml-4">
+                                                <p class="text-sm font-medium text-gray-900">Attendance Marked</p>
+                                                <p class="text-sm text-gray-500">8 minutes ago</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        Checked In
+                    </span>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -133,7 +141,66 @@
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
+<script>
 
+    var options = {
+        series: [{
+            name: 'Series 1',
+            data: [20, 100, 40, 30, 50, 80, 33],
+        }],
+        chart: {
+            height: 350,
+            type: 'radar',
+        },
+        dataLabels: {
+            enabled: true
+        },
+        plotOptions: {
+            radar: {
+                size: 140,
+                polygons: {
+                    strokeColors: '#e9e9e9',
+                    fill: {
+                        colors: ['#f8f8f8', '#fff']
+                    }
+                }
+            }
+        },
 
+        colors: ['#FF4560'],
+        markers: {
+            size: 4,
+            colors: ['#fff'],
+            strokeColor: '#FF4560',
+            strokeWidth: 2,
+        },
+        tooltip: {
+            y: {
+                formatter: function(val) {
+                    return val
+                }
+            }
+        },
+        xaxis: {
+            categories: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        },
+        yaxis: {
+            tickAmount: 7,
+            labels: {
+                formatter: function(val, i) {
+                    if (i % 2 === 0) {
+                        return val
+                    } else {
+                        return ''
+                    }
+                }
+            }
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+</script>
 </div>
