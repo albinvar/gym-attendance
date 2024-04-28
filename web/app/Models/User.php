@@ -73,4 +73,10 @@ class User extends Authenticatable implements WalletFloat, Wallet
     {
         return $this->hasOne(Membership::class);
     }
+
+    // attendance relationship
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

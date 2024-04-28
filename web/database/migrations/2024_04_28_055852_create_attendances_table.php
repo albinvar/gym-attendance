@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('check_out')->nullable();
             $table->date('date');
             $table->string('status');
-            $table->string('type');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

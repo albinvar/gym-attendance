@@ -100,15 +100,25 @@
                                             <div class="flex-shrink-0 h-10 w-10">
                                                 <img class="h-10 w-10 rounded-full" src="https://ui-avatars.com/api/?name=test&color=7F9CF5&background=EBF4FF" alt="">
                                             </div>
-                                            <div class="ml-4">
-                                                <p class="text-sm font-medium text-gray-900">Attendance Marked</p>
-                                                <p class="text-sm text-gray-500">8 minutes ago</p>
+                                            <div class="ml-4 text-left">
+                                                <p class="text-sm font-medium text-gray-900">
+                                                    {{ $checkin->note ?? "Attendance - Checked In" }}
+                                                </p>
+                                                <p class="text-sm text-gray-500">
+                                                    {{ $checkin->created_at->diffForHumans() }}
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="flex items-center">
-                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        Checked In
-                    </span>
+                                            @if($checkin->status == 'checked_out')
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                    Checked Out
+                                                </span>
+                                            @else
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Checked In
+                                                </span>
+                                            @endif
                                         </div>
                                     </li>
                                 @endforeach

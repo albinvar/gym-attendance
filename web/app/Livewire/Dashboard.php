@@ -13,11 +13,7 @@ class Dashboard extends Component
 
     public $membershipActive = false;
 
-    public $checkins = [
-        'Check-in 1',
-        'Check-in 2',
-        'Check-in 3',
-    ];
+    public $checkins = [];
 
 
     protected $listeners = ['openAddFundsModal'];
@@ -88,6 +84,9 @@ class Dashboard extends Component
 
         // check if the authenticated user has an active membership
         $this->membershipActive = auth()->user()->membership()->active()->exists();
+
+        // show the attendance records of the authenticated user of max 5 records
+        $this->checkins = auth()->user()->attendances()->latest()->limit(5)->get();
 
         return view('livewire.dashboard');
     }

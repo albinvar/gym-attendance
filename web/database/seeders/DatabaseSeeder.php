@@ -43,5 +43,15 @@ class DatabaseSeeder extends Seeder
         ]);
         // assign role
         $u2->assignRole('admin');
+
+
+        // seed attendance
+        $student->attendances()->create([
+            'date' => now(),
+            'check_in' => now(),
+            'check_out' => now(),
+            'status' => 'present',
+            'note' => 'test note',
+        ]);
     }
 }
