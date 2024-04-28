@@ -18,6 +18,12 @@ class Attendance extends Model
         'note',
     ];
 
+    protected $casts = [
+        'check_in' => 'datetime',
+        'check_out' => 'datetime',
+        'date' => 'date',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
