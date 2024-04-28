@@ -103,4 +103,45 @@ class Attendance extends Model
                 return in_array($day, $existingDays);
             })->toArray();
     }
+
+    // day wise attendance count for the current month.
+    // eg monday => 4, tuesday => 5, wednesday => 4, thursday => 5, friday => 4, saturday => 0, sunday => 0
+    // also has 0 count for days that have no attendance records
+    public function scopeDayWiseAttendance($query)
+    {
+        $counts = $query->whereMonth('date', now()->month)
+            ->whereYear('date', now()->year)
+            ->get()
+            ->groupBy(fn ($attendance) => $attendance->date->format('l'))
+            ->map(fn ($day) => $day->count());
+
+        return collect([
+            'Sunday' => $counts->get('Sunday', 0),
+            'Monday' => $counts->get('Monday', 0),
+            'Tuesday' => $counts->get('Tuesday', 0),
+            'Wednesday' => $counts->get('Wednesday', 0),
+            'Thursday' => $counts->get('Thursday', 0),
+            'Friday' => $counts->get('Friday', 0),
+            'Saturday' => $counts->get('Saturday', 0),
+        ]);
+    }
+
+    // calculate the total number of hours worked by the user for the current month from difference between check in and check out times
+    // return a rounded off number
+    public function scopeTotalHoursWorked($query)
+    {
+        return $query->whereMonth('date', now()->month)
+            ->whereYear('date', now()->year)
+            ->get()
+            ->map(function ($attendance) {
+                return $attendance->check_in->diffInMinutes($attendance->check_out) / 60;
+            })->sum();
+    }
+
+    // calculate an estimate of calories burned by the user for the current month based on the total hours worked
+    // return a rounded off number
+    public function scopeCaloriesBurned($query)
+    {
+        return $query->totalHoursWorked() * 60;
+    }
 }

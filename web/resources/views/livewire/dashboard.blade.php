@@ -52,6 +52,161 @@
                         Personalized Workouts
                     </li>
                 </ul>
+
+
+                <h3 class="text-2xl mt-12 font-bold tracking-tight text-gray-900">
+                    Your Stats
+                </h3>
+
+                <!-- Card Section -->
+                <div class="max-w-[85rem] px-4 py-10 sm:px-1 lg:px-8 lg:py-14 mx-auto">
+                    <!-- Grid -->
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-1 sm:gap-6">
+                        <!-- Card -->
+                        <div class="flex flex-col gap-y-3 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
+                            <div class="inline-flex justify-center items-center">
+                                <span class="size-2 inline-block bg-gray-500 rounded-full me-2"></span>
+                                <span class="text-xs font-semibold uppercase text-gray-600">
+                                    Total Time Spend
+                                </span>
+                            </div>
+
+                            <div class="text-center">
+                                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
+                                    {{ number_format(auth()->user()->attendances()->totalHoursWorked(), 1) / 60 }}
+                                    <span class="text-sm font-normal text-gray-500">hours</span>
+                                </h3>
+                            </div>
+
+                            <dl class="flex justify-center items-center divide-x divide-gray-200">
+                                <dt class="pe-3">
+          <span class="text-green-600">
+            <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            </svg>
+            <span class="inline-block text-sm">
+              1.7%
+            </span>
+          </span>
+                                    <span class="block text-sm text-gray-500">change</span>
+                                </dt>
+                                <dd class="text-start ps-3">
+                                    <span class="text-sm font-semibold text-gray-800">5</span>
+                                    <span class="block text-sm text-gray-500">last week</span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <!-- End Card -->
+
+                        <!-- Card -->
+                        <div class="flex flex-col gap-y-3 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
+                            <div class="inline-flex justify-center items-center">
+                                <span class="size-2 inline-block bg-green-500 rounded-full me-2"></span>
+                                <span class="text-xs font-semibold uppercase text-gray-600">Calories Burned</span>
+                            </div>
+
+                            <div class="text-center">
+                                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
+                                    {{ round(auth()->user()->attendances()->caloriesBurned()) }}
+                                    <span class="text-sm font-normal text-gray-500">calories</span>
+                                </h3>
+                            </div>
+
+                            <dl class="flex justify-center items-center divide-x divide-gray-200">
+                                <dt class="pe-3">
+          <span class="text-green-600">
+            <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            </svg>
+            <span class="inline-block text-sm">
+              5.6%
+            </span>
+          </span>
+                                    <span class="block text-sm text-gray-500">change</span>
+                                </dt>
+                                <dd class="text-start ps-3">
+                                    <span class="text-sm font-semibold text-gray-800">7</span>
+                                    <span class="block text-sm text-gray-500">last week</span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <!-- End Card -->
+
+                        <!-- Card -->
+                        <div class="flex flex-col gap-y-3 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
+                            <div class="inline-flex justify-center items-center">
+                                <span class="size-2 inline-block bg-red-500 rounded-full me-2"></span>
+                                <span class="text-xs font-semibold uppercase text-gray-600">Leaves Taken ({{ now()->format('M-Y') }})</span>
+                            </div>
+
+                            <div class="text-center">
+                                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
+                                    {{ count(auth()->user()->attendances()->absentDays()) }}
+                                </h3>
+                            </div>
+
+                            <dl class="flex justify-center items-center divide-x divide-gray-200">
+                                <dt class="pe-3">
+          <span class="text-red-600">
+            <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+            <span class="inline-block text-sm">
+              5.6%
+            </span>
+          </span>
+                                    <span class="block text-sm text-gray-500">change</span>
+                                </dt>
+                                <dd class="text-start ps-3">
+                                    <span class="text-sm font-semibold text-gray-800">
+                                        0
+                                    </span>
+                                    <span class="block text-sm text-gray-500">last week</span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <!-- End Card -->
+
+                        <!-- Card -->
+                        <div class="flex flex-col gap-y-3 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
+                            <div class="inline-flex justify-center items-center">
+                                <span class="size-2 inline-block bg-orange-500 rounded-full me-2"></span>
+                                <span class="text-xs font-semibold uppercase text-gray-600">
+                                    Total Workouts
+                                </span>
+                            </div>
+
+                            <div class="text-center">
+                                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
+                                    {{ auth()->user()->attendances()->count() }}
+                                </h3>
+                            </div>
+
+                            <dl class="flex justify-center items-center divide-x divide-gray-200">
+                                <dt class="pe-3">
+          <span class="text-red-600">
+            <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+            <span class="inline-block text-sm">
+              5.6%
+            </span>
+          </span>
+                                    <span class="block text-sm text-gray-500">change</span>
+                                </dt>
+                                <dd class="text-start ps-3">
+                                    <span class="text-sm font-semibold text-gray-800">7</span>
+                                    <span class="block text-sm text-gray-500">last week</span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <!-- End Card -->
+                    </div>
+                    <!-- End Grid -->
+                </div>
+                <!-- End Card Section -->
+
+
                 <h4 class="mt-12 flex-none text-sm font-semibold leading-6 text-indigo-600">
                     Attendance Report
                 </h4>
@@ -516,7 +671,7 @@
     var options = {
         series: [{
             name: 'Series 1',
-            data: [20, 100, 40, 30, 50, 80, 33],
+            data: {{ json_encode(auth()->user()->attendances()->dayWiseAttendance()->values()->toArray()) }},
         }],
         chart: {
             height: 350,

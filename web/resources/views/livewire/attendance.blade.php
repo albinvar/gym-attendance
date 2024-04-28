@@ -1,3 +1,4 @@
+@php $count = 0 @endphp
 <div class="py-6">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -79,6 +80,7 @@
 
                                     <tbody class="divide-y divide-gray-200">
                                     @forelse($attendances as $attendance)
+                                        @php $count++ @endphp
                                         <tr>
                                             <td class="size-px whitespace-nowrap">
                                                 <div class="ps-6 py-3">
@@ -182,6 +184,7 @@
                             </tr>
 
                             @if($attendance->check_out)
+                                @php $count++ @endphp
                             <tr>
                                 <td class="size-px whitespace-nowrap">
                                     <div class="ps-6 py-3">
@@ -303,7 +306,7 @@
                                         <p class="text-sm text-gray-600 ">
                                             Total of
                                             <span class="font-semibold text-gray-800">
-                                                    16
+                                                {{ $count }}
                                                 </span> results
                                         </p>
                                     </div>
