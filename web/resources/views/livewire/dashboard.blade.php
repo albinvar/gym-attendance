@@ -500,7 +500,6 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script>
-
     var options = {
         series: [{
             name: 'Series 1',
