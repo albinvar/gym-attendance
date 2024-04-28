@@ -14,7 +14,7 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        //
+        return view('users.attendance');
     }
 
     /**
@@ -87,8 +87,8 @@ class AttendanceController extends Controller
         // ASSUMPTION: The user is NOT allowed to check in and out multiple times in a day
         // prevent check in if the user is already checked in and checked out for the day
         // remove this condition if the user is allowed to check in and out multiple times in a day
-        if ($attendance && is_null($attendance->check_out)) {
-            return response()->json(['message' => 'You have already checked out'], 400);
+        if ($user->attendances()->today()->checkOut()->exists()) {
+            return response()->json(['message' => 'You have already marked your attendance for today'], 400);
         }
 
         // If the user has already checked in, check them out if the check in time is greater than 1 minute

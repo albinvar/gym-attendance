@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // User Attendance Routes
+    Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
 
     Route::get('/payment/gateway', [PaymentController::class, 'showPaymentGateway'])->name('payment.gateway');
     Route::post('/payment/gateway', [PaymentController::class, 'handleGatewayResponse'])->name('payment.gateway.response');
