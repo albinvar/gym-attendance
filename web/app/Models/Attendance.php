@@ -63,4 +63,12 @@ class Attendance extends Model
     {
         return $query->where('check_in', '<', now()->setTime(8, 0, 0)->toDateTimeString());
     }
+
+    // return all attendance for the current month of the user, day by day (1-31).
+    // This is useful for generating a calendar view of the user's attendance
+    // each day will have a status of 'present', 'absent', 'late', 'early', or 'on time'.
+    public function scopeMonthly($query)
+    {
+        return $query->whereMonth('date', now()->month);
+    }
 }
