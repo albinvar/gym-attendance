@@ -83,7 +83,7 @@ class Dashboard extends Component
     }
     public function render()
     {
-        // rechatge amount
+        // recharge amount
         $this->rechargeAmount = env('MEMBERSHIP_AMOUNT');
 
         // check if the authenticated user has an active membership
