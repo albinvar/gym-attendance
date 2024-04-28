@@ -19,7 +19,10 @@ class RoleSeeder extends Seeder
         // Create roles
         $role = Role::create(['name' => 'user']);
 
+        // trainer
+        $role = Role::create(['name' => 'trainer']);
+
         // role that is assigned to campus entities like  college canteen, library, store, etc.
-        $role = Role::create(['name' => 'campus entity']);
+        $role = Role::create(['name' => 'admin']);
     }
 }

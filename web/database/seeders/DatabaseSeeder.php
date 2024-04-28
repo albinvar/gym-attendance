@@ -28,29 +28,20 @@ class DatabaseSeeder extends Seeder
 
         // canteen seeder
         $u1 = User::factory()->create([
-            'name' => 'Canteen',
-            'email' => 'canteen@gmail.com',
+            'name' => 'Trainer',
+            'email' => 'trainer@gmail.com',
             'password' => bcrypt('password'),
         ]);
 
-        $u1->assignRole('campus entity');
+        $u1->assignRole('trainer');
 
         // library seeder
         $u2 = User::factory()->create([
-            'name' => 'Library',
-            'email' => 'library@gmail.com',
+            'name' => 'Administrator',
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('password'),
         ]);
         // assign role
-        $u2->assignRole('campus entity');
-
-        // store seeder
-        $u3 = User::factory()->create([
-            'name' => 'Store',
-            'email' => 'store@gmail.com',
-            'password' => bcrypt('password'),
-        ]);
-        // assign role
-        $u3->assignRole('campus entity');
+        $u2->assignRole('admin');
     }
 }
