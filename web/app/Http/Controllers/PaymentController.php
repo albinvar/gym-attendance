@@ -143,4 +143,11 @@ class PaymentController extends Controller
         }
 
     }
+
+    public function showInvoice($id)
+    {
+        $membership = auth()->user()->membership()->findOrFail($id);
+
+        return view('invoice', compact('membership'));
+    }
 }
