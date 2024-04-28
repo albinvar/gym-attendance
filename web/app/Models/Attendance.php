@@ -69,6 +69,38 @@ class Attendance extends Model
     // each day will have a status of 'present', 'absent', 'late', 'early', or 'on time'.
     public function scopeMonthly($query)
     {
-        return $query->whereMonth('date', now()->month);
+        return $query->whereMonth('date', now()->month)
+            ->whereYear('date', now()->year)
+            ->get()
+            ->groupBy(fn ($attendance) => $attendance->date->day)
+            ->map(fn ($day) => $day->first()->status);
+    }
+
+    // return all absent days for until the current day of the user.
+    // The days will be returned as an array of integers (1-31) representing the days of the month
+    // the records might be non existent for some days, in which case the day is considered absent
+    public function scopeAbsentDays($query)
+    {
+        $existingDays = $query->pluck('date')->map(function ($date) {
+            return $date->format('j');
+        })->toArray();
+
+        return collect(range(1, now()->day))
+            ->reject(function ($day) use ($existingDays) {
+                return in_array($day, $existingDays);
+            })->toArray();
+    }
+
+    // scope present days
+    public function scopePresentDays($query)
+    {
+        $existingDays = $query->pluck('date')->map(function ($date) {
+            return $date->format('j');
+        })->toArray();
+
+        return collect(range(1, now()->day))
+            ->filter(function ($day) use ($existingDays) {
+                return in_array($day, $existingDays);
+            })->toArray();
     }
 }

@@ -400,8 +400,8 @@
 </div>
 
     <!-- Pass blue and green dates dynamically -->
-    <div id="blueDates" data-dates='[1, 5, 10]'></div>
-    <div id="greenDates" data-dates='[3, 7, 15]'></div>
+    <div id="blueDates" data-dates='@json(array_values(auth()->user()->attendances()->presentDays()))'></div>
+    <div id="greenDates" data-dates='@json(array_values(auth()->user()->attendances()->absentDays()))'></div>
 
     <div>
         <x-dialog-modal wire:model.live="confirmingRecharge">

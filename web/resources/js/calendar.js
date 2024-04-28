@@ -42,7 +42,7 @@ function generateCalendar(year, month, blueDates, greenDates) {
             } else {
                 // Check if the current date is in the blueDates array
                 if (blueDates.includes(dayCounter)) {
-                    calendarHTML += `<td><div class="px-2 py-2 cursor-pointer flex w-full justify-center"><p class="text-base text-green-500 font-medium">${dayCounter}</p></div></td>`;
+                    calendarHTML += `<td><div class="px-2 py-2 cursor-pointer flex w-full justify-center"><p class="text-base text-green-600 font-medium">${dayCounter}</p></div></td>`;
                 }
                 // Check if the current date is in the greenDates array
                 else if (greenDates.includes(dayCounter)) {
