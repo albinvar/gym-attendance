@@ -31,7 +31,7 @@ Route::middleware([
 
     // Manage Users Admin Routes
     Route::get('/users', [AdminController::class, 'index'])->name('users.index');
-
+    Route::get('/users/{user}/attendance', [AdminController::class, 'showAttendance'])->name('admin.users.attendance');
 
     Route::put('/users/{user}', [AdminController::class, 'update'])->name('admin.users.update');
 

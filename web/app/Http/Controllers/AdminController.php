@@ -26,4 +26,9 @@ class AdminController extends Controller
 
         return redirect()->route('users.index')->with('success', 'Card data updated successfully');
     }
+
+    public function showAttendance(User $user)
+    {
+        return view('admin.users.attendance', compact('user'));
+    }
 }
