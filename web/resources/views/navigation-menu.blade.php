@@ -145,9 +145,16 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if(Auth::user()->hasRole('admin'))
+                <x-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                    {{ __('Users') }}
+                </x-responsive-nav-link>
+            @endif
+            @if ( Auth::user()->hasRole('user'))
             <x-responsive-nav-link href="{{ route('attendance.index') }}" :active="request()->routeIs('attendance.index')">
                 {{ __('Attendance') }}
             </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

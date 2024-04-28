@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // Manage Users Admin Routes
+    Route::get('/users', [AdminController::class, 'index'])->name('users.index');
+
+
+    Route::put('/users/{user}', [AdminController::class, 'update'])->name('admin.users.update');
 
     // User Attendance Routes
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');

@@ -73,7 +73,7 @@
 
                             <div class="text-center">
                                 <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
-                                    {{ number_format(auth()->user()->attendances()->totalHoursWorked(), 1) / 60 }}
+                                    {{ round(auth()->user()->attendances()->totalHoursWorked() / 60, 1) }}
                                     <span class="text-sm font-normal text-gray-500">hours</span>
                                 </h3>
                             </div>
