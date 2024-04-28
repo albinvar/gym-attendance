@@ -113,36 +113,105 @@
         <x-dialog-modal wire:model.live="confirmingRecharge">
             <!-- Modal Title -->
             <x-slot name="title">
-                {{ __('Upgrade Membership') }}
+
             </x-slot>
 
             <!-- Modal Content -->
             <x-slot name="content">
 
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <img src="{{ asset('assets/images/gym.svg') }}" class="h-12 w-12" alt="Wallet">
-                        <div class="ml-4">
-                            <h4 class="text-lg font-semibold text-gray-900">Membership</h4>
-                            <p class="text-sm text-gray-600">Upgrade your membership to enjoy more features.</p>
+                <!-- Card -->
+                <div class="shadow-xl shadow-gray-200 p-5 relative z-10 bg-white border rounded-xl md:p-10">
+                    <h3 class="text-xl font-bold text-gray-800">Purchase Membership</h3>
+                    <div class="text-sm text-gray-500">For wide range of benefits towards your physical and mental health</div>
+                    <span class="absolute top-0 end-0 rounded-se-xl rounded-es-xl text-xs font-medium bg-gray-800 text-white py-1.5 px-3">Most popular</span>
+
+                    <div class="mt-5">
+                        <span class="text-6xl font-bold text-gray-800">₹{{ env('MEMBERSHIP_AMOUNT') }}</span>
+                        <span class="text-lg font-bold text-gray-800">.00</span>
+                        <span class="ms-3 text-gray-500">INR / monthly</span>
+                    </div>
+
+                    <div class="mt-5 grid sm:grid-cols-2 gap-y-2 py-4 first:pt-0 last:pb-0 sm:gap-x-6 sm:gap-y-0">
+                        <!-- List -->
+                        <ul class="space-y-2 text-sm sm:text-base">
+                            <li class="flex space-x-3">
+                  <span class="mt-0.5 size-5 flex justify-center items-center rounded-full bg-blue-50 text-blue-600">
+                    <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                                <span class="text-gray-800">
+                    Access to all gym equipments
+                  </span>
+                            </li>
+
+                            <li class="flex space-x-3">
+                  <span class="mt-0.5 size-5 flex justify-center items-center rounded-full bg-blue-50 text-blue-600">
+                    <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                                <span class="text-gray-800">
+                    Personalized workouts
+                  </span>
+                            </li>
+
+                            <li class="flex space-x-3">
+                  <span class="mt-0.5 size-5 flex justify-center items-center rounded-full bg-blue-50 text-blue-600">
+                    <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                                <span class="text-gray-800">
+                    Diet plan
+                  </span>
+                            </li>
+                        </ul>
+                        <!-- End List -->
+
+                        <!-- List -->
+                        <ul class="space-y-2 text-sm sm:text-base">
+                            <li class="flex space-x-3">
+                  <span class="mt-0.5 size-5 flex justify-center items-center rounded-full bg-blue-50 text-blue-600">
+                    <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                                <span class="text-gray-800">
+                    Personal trainer
+                  </span>
+                            </li>
+
+                            <li class="flex space-x-3">
+                  <span class="mt-0.5 size-5 flex justify-center items-center rounded-full bg-blue-50 text-blue-600">
+                    <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                                <span class="text-gray-800">
+                    Recommend workouts
+                  </span>
+                            </li>
+
+                            <li class="flex space-x-3">
+                  <span class="mt-0.5 size-5 flex justify-center items-center rounded-full bg-blue-50 text-blue-600">
+                    <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                                <span class="text-gray-800">
+                    Fitness tracking
+                  </span>
+                            </li>
+                        </ul>
+                        <!-- End List -->
+                    </div>
+
+                    <div class="mt-5 grid grid-cols-2 gap-x-4 py-4 first:pt-0 last:pb-0">
+                        <div>
+                            <p class="text-sm text-gray-500">Cancel anytime.</p>
+                            <p class="text-sm text-gray-500">No card required.</p>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button type="button" wire:click="rechargeFunds" wire:loading.attr="disabled" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Subscribe</button>
                         </div>
                     </div>
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold text-gray-900">$50</p>
-                        <p class="text-sm text-gray-600">/month</p>
-                    </div>
                 </div>
+                <!-- End Card -->
             </x-slot>
 
             <!-- Modal Footer -->
             <x-slot name="footer">
-                <x-secondary-button wire:click="stopConfirmingRecharge" wire:loading.attr="disabled">
-                    {{ __('Cancel') }}
-                </x-secondary-button>
 
-                <x-button class="ms-3" dusk="recharge-button" wire:click="rechargeFunds" wire:loading.attr="disabled">
-                    {{ __('Recharge') }}
-                </x-button>
             </x-slot>
         </x-dialog-modal>
     </div>

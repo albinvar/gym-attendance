@@ -116,7 +116,7 @@ class PaymentController extends Controller
             $amount = $amount / 100;
 
             // update the authenticated user's membership status
-            auth()->user()->membership()->create([
+            $t= auth()->user()->membership()->create([
                 'plan' => 'basic',
                 'status' => 'active',
                 'trial_ends_at' => null,
@@ -127,6 +127,8 @@ class PaymentController extends Controller
                 'payment_status' => 'success',
                 'amount' => $amount,
             ]);
+
+            dd($t);
 
             return response()->json([
                 'success' => true,

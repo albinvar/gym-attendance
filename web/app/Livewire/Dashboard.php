@@ -9,7 +9,7 @@ class Dashboard extends Component
 {
     public $confirmingRecharge = false;
 
-    public $rechargeAmount;
+    public $rechargeAmount = 0;
 
     public $checkins = [
         'Check-in 1',
@@ -81,6 +81,8 @@ class Dashboard extends Component
     }
     public function render()
     {
+        // rechatge amount
+        $this->rechargeAmount = env('MEMBERSHIP_AMOUNT');
         return view('livewire.dashboard');
     }
 }
