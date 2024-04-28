@@ -11,11 +11,6 @@ class Dashboard extends Component
 
     public $rechargeAmount;
 
-    public $digit1;
-    public $digit2;
-    public $digit3;
-    public $digit4;
-
     public $checkins = [
         'Check-in 1',
         'Check-in 2',
@@ -74,7 +69,6 @@ class Dashboard extends Component
             'payment_capture' => 1 // Auto capture
         ];
 
-
         $razorpayOrder = $api->order->create($orderData);
         $razorpayOrderId = $razorpayOrder['id'];
 
@@ -87,21 +81,6 @@ class Dashboard extends Component
     }
     public function render()
     {
-        $pin = auth()->user()->pin ?? null;
-        $card = auth()->user()->card ?? null;
-
-        // Split the pin into an array of digits
-        $digits = str_split($pin);
-
-        // Assign each digit to a separate variable
-        $this->digit1 = $digits[0];
-        $this->digit2 = $digits[1];
-        $this->digit3 = $digits[2];
-        $this->digit4 = $digits[3];
-
-        // Check if the user has enabled the pin
-        $this->pinEnabled = auth()->user()->enable_pin;
-
         return view('livewire.dashboard');
     }
 }

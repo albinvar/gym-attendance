@@ -113,17 +113,24 @@
         <x-dialog-modal wire:model.live="confirmingRecharge">
             <!-- Modal Title -->
             <x-slot name="title">
-                {{ __('Add Funds') }}
+                {{ __('Upgrade Membership') }}
             </x-slot>
 
             <!-- Modal Content -->
             <x-slot name="content">
-                {{ __('Please enter the amount to recharge') }}
 
-                <div class="mt-4">
-                    <x-input type="number" class="mt-1 block w-3/4" placeholder="{{ __('Amount') }}" step="0.01"
-                             wire:model="rechargeAmount" />
-                    <x-input-error for="rechargeAmount" class="mt-2" />
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img src="{{ asset('assets/images/gym.svg') }}" class="h-12 w-12" alt="Wallet">
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold text-gray-900">Membership</h4>
+                            <p class="text-sm text-gray-600">Upgrade your membership to enjoy more features.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold text-gray-900">$50</p>
+                        <p class="text-sm text-gray-600">/month</p>
+                    </div>
                 </div>
             </x-slot>
 

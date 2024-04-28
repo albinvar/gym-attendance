@@ -67,4 +67,10 @@ class User extends Authenticatable implements WalletFloat, Wallet
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // membership relationship
+    public function membership()
+    {
+        return $this->hasOne(Membership::class);
+    }
 }

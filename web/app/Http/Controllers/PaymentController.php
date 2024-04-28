@@ -115,10 +115,17 @@ class PaymentController extends Controller
             // convert the amount to rupees
             $amount = $amount / 100;
 
-            auth()->user()->depositFloat($amount, [
-                'description' => 'Added funds to wallet',
-                'gateway' => 'razorpay',
+            // update the authenticated user's membership status
+            auth()->user()->membership()->create([
+                'plan' => 'basic',
+                'status' => 'active',
+                'trial_ends_at' => null,
+                'ends_at' => now()->addDays(30),
+                'canceled_at' => null,
+                'payment_gateway' => 'razorpay',
                 'payment_id' => $request->get('paymentId'),
+                'payment_status' => 'success',
+                'amount' => $amount,
             ]);
 
             return response()->json([
