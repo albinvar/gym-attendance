@@ -63,9 +63,21 @@
                     <div class="mx-auto max-w-xs px-8">
                         <h4 class="text-lg mb-12 font-semibold text-gray-900">Membership</h4>
                         <img src="{{ asset('assets/images/gym.svg') }}" class="h-48 mx-auto" alt="Wallet">
-                        <button wire:click="openAddFundsModal" class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            Renew Membership
-                        </button>
+                       @if(!$membershipActive)
+                            <button wire:click="openAddFundsModal" class="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                Subscribe
+                            </button>
+                        @else
+
+                           <div class="mt-10">
+                               <p class="text-sm text-gray-600 font-semibold text-green-600">Your membership is active. Enjoy the benefits.</p>
+                               <div class="mt-4">
+                                   <p class="text-sm text-gray-600">Membership : <span class="text-gray-900 font-semibold">Active</span></p>
+                                   <p class="text-sm text-gray-600">Amount Paid : <span class="text-gray-900 font-semibold">₹{{ env('MEMBERSHIP_AMOUNT') }}</span></p>
+                                   <p class="text-sm text-gray-600">Next Payment : <span class="text-gray-900 font-semibold">{{ Auth::user()->membership->ends_at->format('d M, Y') }}</span></p>
+                               </div>
+                            </div>
+                       @endif
                         <p class="mt-6 text-xs leading-5 text-gray-600">
                             Your attendance report will be updated here. Keep track of your attendance and stay updated.
                         </p>
@@ -106,8 +118,6 @@
     </div>
 </div>
 
-
-<x-transactions />
 
     <div>
         <x-dialog-modal wire:model.live="confirmingRecharge">

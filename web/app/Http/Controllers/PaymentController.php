@@ -128,8 +128,6 @@ class PaymentController extends Controller
                 'amount' => $amount,
             ]);
 
-            dd($t);
-
             return response()->json([
                 'success' => true,
                 'message' => 'Payment Successful',

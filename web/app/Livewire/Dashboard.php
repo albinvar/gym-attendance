@@ -11,6 +11,8 @@ class Dashboard extends Component
 
     public $rechargeAmount = 0;
 
+    public $membershipActive = false;
+
     public $checkins = [
         'Check-in 1',
         'Check-in 2',
@@ -83,6 +85,10 @@ class Dashboard extends Component
     {
         // rechatge amount
         $this->rechargeAmount = env('MEMBERSHIP_AMOUNT');
+
+        // check if the authenticated user has an active membership
+        $this->membershipActive = auth()->user()->membership()->active()->exists();
+
         return view('livewire.dashboard');
     }
 }

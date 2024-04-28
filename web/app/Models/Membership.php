@@ -22,6 +22,18 @@ class Membership extends Model
         'amount',
     ];
 
+    protected $dates = [
+        'trial_ends_at',
+        'ends_at',
+        'canceled_at',
+    ];
+
+    protected $casts = [
+        'trial_ends_at' => 'datetime',
+        'ends_at' => 'datetime',
+        'canceled_at' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
