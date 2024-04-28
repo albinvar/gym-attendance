@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Membership;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Razorpay\Api\Api;
 use Razorpay\Api\Errors\SignatureVerificationError;
@@ -146,7 +148,17 @@ class PaymentController extends Controller
 
     public function showInvoice($id)
     {
-        $membership = auth()->user()->membership()->findOrFail($id);
+        $membership = Membership::find($id);
+
+        if(!$membership)
+        {
+            abort(404);
+        }
+
+        if (!auth()->user()->hasRole('admin') && auth()->id() !== $membership->user_id)
+        {
+            return redirect()->route('dashboard');
+        }
 
         return view('invoice', compact('membership'));
     }

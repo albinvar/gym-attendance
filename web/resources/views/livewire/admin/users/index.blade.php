@@ -83,6 +83,14 @@
                                         <th scope="col" class="px-6 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                                                 <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                    Income
+                                                </span>
+                                            </div>
+                                        </th>
+
+                                        <th scope="col" class="px-6 py-3 text-start">
+                                            <div class="flex items-center gap-x-2">
+                                                <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
                                                     Actions
                                                 </span>
                                             </div>
@@ -91,7 +99,7 @@
                                         <th scope="col" class="px-6 py-3 text-start">
                                             <div class="flex items-center gap-x-2">
                                                 <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
-                                                    Recorded At
+                                                    Last Edit
                                                 </span>
                                             </div>
                                         </th>
@@ -167,6 +175,16 @@
 
                             <td class="size-px whitespace-nowrap">
                                 <div class="px-6 py-3">
+                                                    <span class="text-sm text-gray-600">
+                                                        <a class="text-gray-700 font-semibold" href="mailto:{{ $user->email }}">
+                                                            ₹ {{ $user->income }}
+                                                        </a>
+                                                    </span>
+                                </div>
+                            </td>
+
+                            <td class="size-px whitespace-nowrap">
+                                <div class="px-6 py-3">
 
                                     <a href="{{ route('admin.users.attendance', ['user' => $user,]) }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                                         <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
@@ -185,7 +203,7 @@
                                 <div class="px-6 py-3">
                                                     <span class="text-sm text-gray-600">
                                                         <span class="font-medium text-gray-800">
-                                                            {{ $user->created_at->diffForHumans() }}
+                                                            {{ $user->updated_at->diffForHumans() }}
                                                         </span>
                                                     </span>
                                 </div>
@@ -201,12 +219,27 @@
                                                 <span class="mb-3 flex rounded-lg gap-x-3 text-sm text-gray-800 font-semibold py-2 px-3 bg-gray-100">
                                                     Card ID : {{ $user->card }}
                                                 </span>
-                                                <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500" href="#">
+                                                <a
+                                                    href="{{ route('admin.users.attendance', ['user' => $user,]) }}"
+                                                    class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500"
+                                                >
                                                     Attendance
                                                 </a>
-                                                <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500" href="#">
+                                                <a
+                                                    data-hs-overlay="#hs-notifications-{{ $user->id }}"
+                                                    class="flex grow items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500"
+                                                >
                                                     Edit
                                                 </a>
+
+                                                @if($user->membership()->exists())
+                                                <a
+                                                    href="{{ route('invoice.show', ['id' => $user->membership->id]) }}"
+                                                    class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500"
+                                                >
+                                                    Download Invoice
+                                                </a>
+                                                @endif
                                             </div>
                                             <div class="py-2 first:pt-0 last:pb-0">
                                                 <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500" href="#">
@@ -248,7 +281,7 @@
                                                 <div class="mt-6 grid gap-4 lg:gap-6">
                                                     <div>
                                                         <label for="hs-work-email-hire-us-1" class="block mb-4 text-sm text-gray-700 font-medium">Card ID</label>
-                                                        <input type="text" name="card" value="{{ $user->card }}" id="hs-work-email-hire-us-1" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
+                                                        <input type="text" name="card" value="{{ $user->card }}" id="hs-work-email-hire-us-1" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
                                                     </div>
 
 

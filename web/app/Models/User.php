@@ -71,12 +71,23 @@ class User extends Authenticatable implements WalletFloat, Wallet
     // membership relationship
     public function membership()
     {
-        return $this->hasOne(Membership::class);
+        return $this->hasone(Membership::class);
+    }
+
+    public function memberships()
+    {
+        return $this->hasMany(Membership::class);
     }
 
     // attendance relationship
     public function attendances()
     {
         return $this->hasMany(Attendance::class);
+    }
+
+    // income from sum of amount of all membership
+    public function getIncomeAttribute()
+    {
+        return $this->memberships()->sum('amount');
     }
 }
