@@ -17,7 +17,7 @@ while True:
     
     # Assuming data is card ID, send it to server
     print("Received Card ID:", data)
-    server_url = "http://127.0.0.1:8000/api/attendance/mark";
+    server_url = "http://gym.w3x.live/api/attendance/mark";
     data = {'rfid': data}
     headers = {'Accept': 'application/json'}
     response = requests.post(server_url, data=data, headers=headers)
