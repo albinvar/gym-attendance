@@ -8,12 +8,17 @@ print("Serial connection established")
 # Main loop
 while True:
     # Read data from serial port
-    card_id = ser.readline().strip().decode('utf-8')
-    print("Received Card ID:", card_id)
-
-    # Send data to server
+    data = ser.readline().strip().decode('utf-8')
+    
+    if data == "END":
+        print("Received termination signal. Closing serial connection.")
+        ser.close()
+        break
+    
+    # Assuming data is card ID, send it to server
+    print("Received Card ID:", data)
     server_url = "http://127.0.0.1:8000/api/attendance/mark";
-    data = {'rfid': card_id}
+    data = {'rfid': data}
     headers = {'Accept': 'application/json'}
     response = requests.post(server_url, data=data, headers=headers)
 
