@@ -21,5 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Routes for Attendance Marking Hardware
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/attendance/mark', [AttendanceController::class, 'mark']);
 });
+
+Route::post('/attendance/mark', [AttendanceController::class, 'mark']);
