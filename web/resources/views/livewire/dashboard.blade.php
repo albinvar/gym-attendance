@@ -1,11 +1,12 @@
 <div>
 <div class="bg-white py-2">
+    @if(!auth()->user()->hasRole('admin'))
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto mt-2 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
             <div class="p-8 sm:p-10 lg:flex-auto">
                 <h3 class="text-2xl font-bold tracking-tight text-gray-900">Welcome {{ Auth::user()->name }}</h3>
                 <p class="mt-6 text-base leading-7 text-gray-600">
-                    Thanks for using CampusX. We are glad to have you here. Keep track of your expenses and manage your wallet with ease.
+                    Thanks for using Fit Flow Access. We are glad to have you here. Keep track of your expenses and manage your wallet with ease.
                 </p>
                 <img src="https://cdn.devdojo.com/images/november2020/welcome.png" class="hidden h-48 lg:block mt-10 float-right" alt="Welcome to CampusX">
                 <div class="mt-10 flex items-center gap-x-4">
@@ -26,24 +27,6 @@
                             <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                         </svg>
                         Recommend Workouts
-                    </li>
-                    <li class="flex gap-x-3">
-                        <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                        </svg>
-                        Personal Trainer
-                    </li>
-                    <li class="flex gap-x-3">
-                        <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                        </svg>
-                        Diet Plan
-                    </li>
-                    <li class="flex gap-x-3">
-                        <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                        </svg>
-                        Gym Equipments
                     </li>
                     <li class="flex gap-x-3">
                         <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -552,6 +535,84 @@
             </div>
         </div>
     </div>
+        @else
+        <!-- Card Section -->
+        <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+            <!-- Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Card -->
+                <div class="flex flex-col gap-y-3 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
+                    <div class="inline-flex justify-center items-center">
+                        <span class="size-2 inline-block bg-gray-500 rounded-full me-2"></span>
+                        <span class="text-xs font-semibold uppercase text-gray-600">Trainees</span>
+                    </div>
+
+                    <div class="text-center">
+                        <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
+                            {{ \App\Models\User::role('user')->count() }}
+                        </h3>
+                    </div>
+
+                    <dl class="flex justify-center items-center divide-x divide-gray-200">
+                        <dt class="pe-3">
+          <span class="text-green-600">
+            <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            </svg>
+            <span class="inline-block text-sm">
+              1.7%
+            </span>
+          </span>
+                            <span class="block text-sm text-gray-500">change</span>
+                        </dt>
+                        <dd class="text-start ps-3">
+                            <span class="text-sm font-semibold text-gray-800">5</span>
+                            <span class="block text-sm text-gray-500">last week</span>
+                        </dd>
+                    </dl>
+                </div>
+                <!-- End Card -->
+
+                <!-- Card -->
+                <div class="flex flex-col gap-y-3 lg:gap-y-5 p-4 md:p-5 bg-white border shadow-sm rounded-xl">
+                    <div class="inline-flex justify-center items-center">
+                        <span class="size-2 inline-block bg-green-500 rounded-full me-2"></span>
+                        <span class="text-xs font-semibold uppercase text-gray-600">Total Checkins Today</span>
+                    </div>
+
+                    <div class="text-center">
+                        <h3 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-800">
+                            {{ \App\Models\Attendance::whereDate('created_at', today())->count() }}
+                        </h3>
+                    </div>
+
+                    <dl class="flex justify-center items-center divide-x divide-gray-200">
+                        <dt class="pe-3">
+          <span class="text-green-600">
+            <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            </svg>
+            <span class="inline-block text-sm">
+              5.6%
+            </span>
+          </span>
+                            <span class="block text-sm text-gray-500">change</span>
+                        </dt>
+                        <dd class="text-start ps-3">
+                            <span class="text-sm font-semibold text-gray-800">7</span>
+                            <span class="block text-sm text-gray-500">last week</span>
+                        </dd>
+                    </dl>
+                </div>
+                <!-- End Card -->
+
+
+
+            </div>
+            <!-- End Grid -->
+        </div>
+        <!-- End Card Section -->
+    @endif
 </div>
 
     <!-- Pass blue and green dates dynamically -->
