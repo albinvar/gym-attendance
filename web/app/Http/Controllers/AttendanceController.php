@@ -81,6 +81,11 @@ class AttendanceController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
 
+        // Check if the user is allowed to mark attendance by checking if they have a membership
+        if (!$user->membership) {
+            return response()->json(['message' => 'You are not allowed to mark attendance. Membership required...'], 400);
+        }
+
         // Check if the user has already checked in
         $attendance = $user->attendances()->today()->checkIn()->first();
 
